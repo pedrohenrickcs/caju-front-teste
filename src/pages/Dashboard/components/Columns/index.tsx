@@ -4,17 +4,26 @@ import RegistrationCard from "../RegistrationCard";
 
 const allColumns = [
   { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APPROVED', title: "Aprovado" },
+  { status: 'APROVED', title: "Aprovado" },
   { status: 'REPROVED', title: "Reprovado" },
 ];
 
-type Props = {
-  registrations?: any[];
+export type Registration = {
+  id: number;
+  status: string;
 };
-const Collumns = (props: Props) => {
+
+export type ContentRegistrations = {
+  registrations?: Registration[];
+};
+
+
+const Collumns = ({ registrations }: ContentRegistrations) => {
   return (
     <S.Container>
       {allColumns.map((collum) => {
+        const columnRegistrations = registrations?.filter((registration) => registration.status === collum.status);
+
         return (
           <S.Column status={collum.status} key={collum.title}>
             <>
@@ -22,14 +31,9 @@ const Collumns = (props: Props) => {
                 {collum.title}
               </S.TitleColumn>
               <S.CollumContent>
-                {props?.registrations?.map((registration) => {
-                  return (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
-                  );
-                })}
+                {columnRegistrations?.map((registration, i) => (
+                  <RegistrationCard data={registration} key={i} />
+                ))}
               </S.CollumContent>
             </>
           </S.Column>
