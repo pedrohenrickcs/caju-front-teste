@@ -1,22 +1,13 @@
 
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
+import { ContentRegistrations } from "~/types/Registrations";
 
 const allColumns = [
   { status: 'REVIEW', title: "Pronto para revisar" },
   { status: 'APROVED', title: "Aprovado" },
   { status: 'REPROVED', title: "Reprovado" },
 ];
-
-export type Registration = {
-  id: number;
-  status: string;
-};
-
-export type ContentRegistrations = {
-  registrations?: Registration[];
-};
-
 
 const Collumns = ({ registrations }: ContentRegistrations) => {
   return (
