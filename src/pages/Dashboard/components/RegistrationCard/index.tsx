@@ -6,7 +6,7 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
-import { updateRegistration } from "~/services/registrations";
+import { deleteRegistration, updateRegistration } from "~/services/registrations";
 
 type ContentRegistrationsCrad = {
   data: any;
@@ -14,40 +14,45 @@ type ContentRegistrationsCrad = {
 
 const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
 
-  const handleReprovedClick = async () => {
-    try {
-      await updateRegistration(data.id, { 
+  const handleStatusChange = async (newStatus: string) => {
+    if (data.status !== newStatus) {
+      try {
+        await updateRegistration(data.id, {
           ...data,
-          status: 'REPROVED' 
+          status: newStatus
         });
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  const handleApprovedClick = async () => {
+  const handleStatusDelete = async () => {
     try {
-      await updateRegistration(data.id, { 
-        ...data,
-        status: 'APROVED' });
+      await deleteRegistration(data.id);
       window.location.reload();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleReviewClick = async () => {
-    try {
-      await updateRegistration(data.id, { 
-        ...data,
-        status: 'REVIEW' });
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
+  const handleReprovedClick = () => {
+    handleStatusChange('REPROVED');
   };
 
+  const handleApprovedClick = () => {
+    handleStatusChange('APROVED');
+  };
+
+  const handleReviewClick = () => {
+    handleStatusChange('REVIEW');
+  };
+
+  const handleDeleteClick = () => {
+    handleStatusDelete();
+  };
+  
   return (
     <S.Card>
       <S.IconAndText>
@@ -66,8 +71,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
         <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleReprovedClick}>Reprovar</ButtonSmall>
         <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleApprovedClick}>Aprovar</ButtonSmall>
         <ButtonSmall bgcolor="#ff8858" onClick={handleReviewClick}>Revisar novamente</ButtonSmall>
-
-        <HiOutlineTrash />
+        <HiOutlineTrash onClick={handleDeleteClick} />
       </S.Actions>
     </S.Card>
   );

@@ -5,6 +5,7 @@ export const getRegistrations = async () => {
     const response = await api.get(
       'http://localhost:3000/registrations',
     )
+    
     return response.data
   } catch (error) {
     throw new Error('Erro ao obter os dados da API')
@@ -17,7 +18,18 @@ export const updateRegistration = async (registrationId: number, updatedData: an
       `http://localhost:3000/registrations/${registrationId}`,
       updatedData,
     )
-    console.log('response:', response.data);
+
+    return response.data
+  } catch (error) {
+    throw new Error('Erro ao atualizar os dados da API')
+  }
+}
+
+export const deleteRegistration = async (registrationId: number) => {
+  try {
+    const response = await api.put(
+      `http://localhost:3000/registrations/${registrationId}`
+    )
     
     return response.data
   } catch (error) {
