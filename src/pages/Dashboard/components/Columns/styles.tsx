@@ -1,16 +1,17 @@
 import styled from "styled-components";
+import { StatusEnum } from "~/enums/StatusEnum";
 const registrationStatusStyles: {
-  [key in string]: { background: string; title: string };
+  [key in StatusEnum]: { background: string; title: string };
 } = {
-  REVIEW: {
+  [StatusEnum.Review]: {
     background: "#FDF8E9",
     title: "#EFC24D",
   },
-  APROVED: {
+  [StatusEnum.Approved]: {
     background: "#EEEEFD",
     title: "#4242DF",
   },
-  REPROVED: {
+  [StatusEnum.Reproved]: {
     background: "#FBEDF6",
     title: "#CE2893",
   },
@@ -24,7 +25,7 @@ export const Container = styled.div`
   margin-top: 24px;
 `;
 
-export const Column = styled.div<{ status: any }>`
+export const Column = styled.div<{ status: StatusEnum }>`
   height: auto;
   background-color: ${({ status }) =>
     registrationStatusStyles[status].background};
@@ -33,7 +34,7 @@ export const Column = styled.div<{ status: any }>`
   max-height: 80vh;
 `;
 
-export const TitleColumn = styled.h3<{ status: any }>`
+export const TitleColumn = styled.h3<{ status: StatusEnum }>`
   margin: 0px;
   color: ${({ status }) => registrationStatusStyles[status].title};
   margin: 24px;

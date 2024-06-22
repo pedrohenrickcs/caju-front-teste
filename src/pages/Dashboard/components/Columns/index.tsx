@@ -2,11 +2,12 @@
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
 import { ContentRegistrations } from "~/types/Registrations";
+import { StatusEnum } from "~/enums/StatusEnum";
 
 const allColumns = [
-  { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APROVED', title: "Aprovado" },
-  { status: 'REPROVED', title: "Reprovado" },
+  { status: StatusEnum.Review, title: "Pronto para revisar" },
+  { status: StatusEnum.Approved, title: "Aprovado" },
+  { status: StatusEnum.Reproved, title: "Reprovado" },
 ];
 
 const Collumns = ({ registrations }: ContentRegistrations) => {
