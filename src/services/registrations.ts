@@ -36,3 +36,14 @@ export const deleteRegistration = async (registrationId: number) => {
     throw new Error('Erro ao atualizar os dados da API')
   }
 }
+
+export const refetchRegistrations = async () => {
+  try {
+    const registrations = await getRegistrations()
+    console.log('refetched registrations: ', registrations);
+    
+    return registrations
+  } catch (error) {
+    throw new Error('Erro ao refetch os dados da API')
+  }
+}
