@@ -6,8 +6,8 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
-import { deleteRegistration, updateRegistration } from "~/services/registrations";
 import { StatusEnum } from "~/enums/StatusEnum";
+import { api } from "~/services";
 
 type ContentRegistrationsCrad = {
   data: any
@@ -18,7 +18,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
   const handleStatusChange = async (newStatus: string) => {
     if (data.status !== newStatus) {
       try {
-        await updateRegistration(data.id, {
+        await api.updateRegistration(data.id, {
           ...data,
           status: newStatus
         });
@@ -31,7 +31,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
 
   const handleStatusDelete = async () => {
     try {
-      await deleteRegistration(data.id);
+      await api.deleteRegistration(data.id);
       window.location.reload();
     } catch (error) {
       console.error(error);

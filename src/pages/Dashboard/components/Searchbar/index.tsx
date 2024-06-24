@@ -5,9 +5,10 @@ import Button from "~/components/common/Buttons";
 import CpfMaskedTextField from "~/components/common/CpfTextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-import { getSearchRegistrations, refetchRegistrations } from "~/services/registrations";
 import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "../Loading";
+import { api } from "~/services";
+
 export const SearchBar = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +17,7 @@ export const SearchBar = () => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (cpf) {
-        getSearchRegistrations();
+        // api.getSearchRegistrations();
       }
     }, 500);
 
@@ -31,7 +32,7 @@ export const SearchBar = () => {
   const handleRefetch = async () => {
     setIsLoading(true);
     try {
-      await refetchRegistrations();
+      await api.refetchRegistrations();
     } catch (error) {
       console.error(error);
     } finally {
