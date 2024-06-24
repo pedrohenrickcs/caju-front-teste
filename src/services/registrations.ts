@@ -1,23 +1,24 @@
 import { api } from "./api"
 
-export const getRegistrations = async (cpf?: string) => {
-  
+export const getRegistrations = async () => {
   try {
     const response = await api.get(
-      `http://localhost:3000/registrations?cpf=${cpf ? cpf : ''}`,
+      `http://localhost:3000/registrations`,
     )
 
-    const registrations = response.data;
+    return response.data;
+  } catch (error) {
+    throw new Error('Erro ao obter os dados da API')
+  }
+}
 
-    if (cpf) {
-      const filteredRegistrations = registrations.filter((registration: any) => {
-        return registration.cpf === cpf
-      } );
-      
-      return filteredRegistrations;
-    }
+export const getSearchRegistrations = async (cpf?: string) => {
+  try {
+    const response = await api.get(
+      `http://localhost:3000/registrations?cpf=${cpf}`,
+    )
 
-    return registrations;
+    return response.data;
   } catch (error) {
     throw new Error('Erro ao obter os dados da API')
   }
@@ -51,7 +52,6 @@ export const deleteRegistration = async (registrationId: number) => {
 export const refetchRegistrations = async () => {
   try {
     const registrations = await getRegistrations()
-    console.log('refetched registrations: ', registrations);
     
     return registrations
   } catch (error) {

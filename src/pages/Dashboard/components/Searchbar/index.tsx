@@ -5,12 +5,24 @@ import Button from "~/components/common/Buttons";
 import CpfMaskedTextField from "~/components/common/CpfTextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-import { getRegistrations, refetchRegistrations } from "~/services/registrations";
-import { ChangeEvent, useState } from "react";
+import { getSearchRegistrations, refetchRegistrations } from "~/services/registrations";
+import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "../Loading";
 export const SearchBar = () => {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
+  const [cpf, setCpf] = useState('');
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (cpf) {
+        getSearchRegistrations();
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [cpf])
+
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
@@ -27,16 +39,16 @@ export const SearchBar = () => {
     }
   };
 
-  const getCpf = async (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const cpf = event.target.value;
-    return getRegistrations(cpf)
+    setCpf(cpf)
   };
 
   if (isLoading) return <Loading />
   
   return (
     <S.Container>
-      <CpfMaskedTextField onChange={getCpf} />
+      <CpfMaskedTextField onChange={handleInputChange} />
       <S.Actions>
         <IconButton aria-label="refetch" onClick={handleRefetch}>
           <HiRefresh />
