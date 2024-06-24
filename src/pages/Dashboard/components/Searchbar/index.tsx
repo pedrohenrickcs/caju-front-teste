@@ -5,8 +5,8 @@ import Button from "~/components/common/Buttons";
 import CpfMaskedTextField from "~/components/common/CpfTextField";
 import routes from "~/router/routes";
 import * as S from "./styles";
-import { refetchRegistrations } from "~/services/registrations";
-import { useState } from "react";
+import { getRegistrations, refetchRegistrations } from "~/services/registrations";
+import { ChangeEvent, useState } from "react";
 import Loading from "../Loading";
 export const SearchBar = () => {
   const history = useHistory();
@@ -27,11 +27,16 @@ export const SearchBar = () => {
     }
   };
 
+  const getCpf = async (event: ChangeEvent<HTMLInputElement>) => {
+    const cpf = event.target.value;
+    return getRegistrations(cpf)
+  };
+
   if (isLoading) return <Loading />
   
   return (
     <S.Container>
-      <CpfMaskedTextField />
+      <CpfMaskedTextField onChange={getCpf} />
       <S.Actions>
         <IconButton aria-label="refetch" onClick={handleRefetch}>
           <HiRefresh />

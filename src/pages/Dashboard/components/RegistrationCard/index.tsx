@@ -7,9 +7,10 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import { deleteRegistration, updateRegistration } from "~/services/registrations";
+import { StatusEnum } from "~/enums/StatusEnum";
 
 type ContentRegistrationsCrad = {
-  data: any;
+  data: any
 };
 
 const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
@@ -68,9 +69,14 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
         <span>{data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleReprovedClick}>Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleApprovedClick}>Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858" onClick={handleReviewClick}>Revisar novamente</ButtonSmall>
+        {data.status === StatusEnum.Review ? (
+          <>
+            <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleReprovedClick}>Reprovar</ButtonSmall>
+            <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleApprovedClick}>Aprovar</ButtonSmall>
+          </>
+        ) : (
+          <ButtonSmall bgcolor="#ff8858" onClick={handleReviewClick}>Revisar novamente</ButtonSmall>
+        )}
         <HiOutlineTrash onClick={handleDeleteClick} />
       </S.Actions>
     </S.Card>

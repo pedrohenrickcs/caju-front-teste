@@ -1,12 +1,23 @@
 import { api } from "./api"
 
-export const getRegistrations = async () => {
+export const getRegistrations = async (cpf?: string) => {
+  
   try {
     const response = await api.get(
-      'http://localhost:3000/registrations',
+      `http://localhost:3000/registrations?cpf=${cpf ? cpf : ''}`,
     )
-    
-    return response.data
+
+    const registrations = response.data;
+
+    if (cpf) {
+      const filteredRegistrations = registrations.filter((registration: any) => {
+        return registration.cpf === cpf
+      } );
+      
+      return filteredRegistrations;
+    }
+
+    return registrations;
   } catch (error) {
     throw new Error('Erro ao obter os dados da API')
   }
