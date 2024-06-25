@@ -4,11 +4,26 @@ GET http://localhost:3000/registrations/
 ###
 POST http://localhost:3000/registrations/
 content-type: application/json
-
 {
     "id": "7",
-    "name": "Pedro Henrick Cavalcante Souza",
+    "employeeName": "Pedro Henrick Cavalcante Souza",
     "email": "pedro.henrickcs@gmail.com",
     "cpf": "22850402885",
-    "admissionDate": "21/08/1993"
+    "admissionDate": "21/08/1993",
+    "status": "REVIEW"
+}
+
+###
+DELETE http://localhost:3000/registrations/7
+
+###
+PUT http://localhost:3000/registrations/1
+content-type: application/json
+{
+    "id": "1",
+    "employeeName": "Pedro Henrick Cavalcante Souza",
+    "email": "pedro.henrickcs@gmail.com",
+    "cpf": "22850402885",
+    "admissionDate": "21/08/1993",
+    "status": "REPROVED"
 }

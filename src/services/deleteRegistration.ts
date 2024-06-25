@@ -2,7 +2,7 @@ import { api } from "./api"
 
 export const deleteRegistration = async (registrationId: number) => {
   try {
-    const response = await api.put(
+    const response = await api.delete(
       `http://localhost:3000/registrations/${registrationId}`
     )
     
