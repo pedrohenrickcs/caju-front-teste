@@ -50,7 +50,7 @@ export const SearchBar = () => {
   
   return (
     <S.Container>
-      <CpfMaskedTextField onChange={handleInputChange} />
+      <CpfMaskedTextField placeholder="Digite um CPF válido" onChange={handleInputChange} />
       <S.Actions>
         <IconButton aria-label="refetch" onClick={handleRefetch}>
           <HiRefresh />

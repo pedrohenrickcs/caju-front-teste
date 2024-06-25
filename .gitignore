@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # ESLint cache
-*.eslintcache
+.eslintcache*
