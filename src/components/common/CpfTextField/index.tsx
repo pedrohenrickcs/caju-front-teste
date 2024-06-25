@@ -1,4 +1,4 @@
-import { ChangeEventHandler, InputHTMLAttributes } from "react";
+import { ChangeEventHandler, InputHTMLAttributes, forwardRef } from "react";
 import * as S from "./styles";
 
 type PropsCpf = {
@@ -7,14 +7,14 @@ type PropsCpf = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 } & InputHTMLAttributes<any>;
 
-const CpfMaskedTextField = ({ id, label, onChange, error }: PropsCpf) => {
-  return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <S.Input mask="999.999.999-99" placeholder="Digite um CPF válido" onChange={onChange} />
-      <span style={{fontSize: 12, color: '#ff0000'}}>{error}</span>
-    </div>
-  );
-};
+const CpfMaskedTextField = forwardRef<HTMLInputElement, PropsCpf>(
+  ({ label, onChange, error, type, placeholder, ...rest }, ref) => (
+    <>
+      <label>{label}</label>
+      <S.Input mask="999.999.999-99" ref={ref} type={type} placeholder={placeholder} onChange={onChange} {...rest} />
+      <p style={{ fontSize: 12, color: 'red' }}>{error}</p>
+    </>
+  )
+)
 
 export default CpfMaskedTextField;

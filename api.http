@@ -1,0 +1,14 @@
+###
+GET http://localhost:3000/registrations/
+
+###
+POST http://localhost:3000/registrations/
+content-type: application/json
+
+{
+    "id": "7",
+    "name": "Pedro Henrick Cavalcante Souza",
+    "email": "pedro.henrickcs@gmail.com",
+    "cpf": "22850402885",
+    "admissionDate": "21/08/1993"
+}

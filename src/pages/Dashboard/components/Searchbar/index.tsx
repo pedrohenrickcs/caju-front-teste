@@ -33,6 +33,7 @@ export const SearchBar = () => {
     setIsLoading(true);
     try {
       await api.refetchRegistrations();
+      window.location.reload();
     } catch (error) {
       console.error(error);
     } finally {

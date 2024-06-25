@@ -1,3 +1,4 @@
+import { createRegistrations } from "./createRegistrations";
 import { deleteRegistration } from "./deleteRegistration";
 import { getRegistrations } from "./getRegistrations";
 import { refetchRegistrations } from "./refetchRegistrations";
@@ -7,5 +8,6 @@ export const api = {
   getRegistrations,
   deleteRegistration,
   refetchRegistrations,
-  updateRegistration
+  updateRegistration,
+  createRegistrations
 }
