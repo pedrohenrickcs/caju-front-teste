@@ -2,7 +2,7 @@ import { api } from "./api";
 
 export const createRegistrations = async (formData: any) => {
   try {
-    const response = await api.post('http://localhost:3000/registrations', formData, {
+    const response = await api.post('/registrations', formData, {
       headers: {
         'Content-Type': 'application/json',
       },

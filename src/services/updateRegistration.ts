@@ -3,7 +3,7 @@ import { api } from "./api"
 export const updateRegistration = async (registrationId: number, updatedData: any) => {
   try {
     const response = await api.put(
-      `http://localhost:3000/registrations/${registrationId}`,
+      `/registrations/${registrationId}`,
       updatedData,
     )
 

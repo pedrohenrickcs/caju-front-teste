@@ -9,8 +9,13 @@ import {
 import { StatusEnum } from "~/enums/StatusEnum";
 import { api } from "~/services";
 import { ContentRegistrationsCrad } from "~/types/RegistrationCard";
+import { useState } from "react";
+import ModalDialog from "~/components/common/Modal";
 
 const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalAction, setModalAction] = useState('');
+
 
   const handleStatusChange = async (newStatus: string) => {
     if (data.status !== newStatus) {
@@ -35,20 +40,27 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
     }
   };
 
-  const handleReprovedClick = () => {
-    handleStatusChange('REPROVED');
+  const handleOpenModal = (action: string) => {
+    setModalAction(action);
+    setModalVisible(true);
   };
 
-  const handleApprovedClick = () => {
-    handleStatusChange('APROVED');
+  const handleCloseModal = () => {
+    setModalVisible(false);
   };
 
-  const handleReviewClick = () => {
-    handleStatusChange('REVIEW');
-  };
-
-  const handleDeleteClick = () => {
-    handleStatusDelete();
+  const handleConfirmAction = () => {
+    switch (modalAction) {
+      case StatusEnum.Reproved:
+      case StatusEnum.Approved:
+      case StatusEnum.Review:
+        handleStatusChange(modalAction);
+        break;
+      case 'DELETE':
+        handleStatusDelete();
+        break;
+    }
+    setModalVisible(false);
   };
   
   return (
@@ -68,14 +80,22 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
       <S.Actions>
         {data.status === StatusEnum.Review ? (
           <>
-            <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleReprovedClick}>Reprovar</ButtonSmall>
-            <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleApprovedClick}>Aprovar</ButtonSmall>
+            <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={() => handleOpenModal('REPROVED')}>Reprovar</ButtonSmall>
+            <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={() => handleOpenModal(StatusEnum.Approved)}>Aprovar</ButtonSmall>
           </>
         ) : (
-          <ButtonSmall bgcolor="#ff8858" onClick={handleReviewClick}>Revisar novamente</ButtonSmall>
+          <ButtonSmall bgcolor="#ff8858" onClick={() => handleOpenModal(StatusEnum.Review)}>Revisar novamente</ButtonSmall>
         )}
-        <HiOutlineTrash onClick={handleDeleteClick} />
+        <HiOutlineTrash onClick={() => handleOpenModal('DELETE')} />
       </S.Actions>
+
+      <ModalDialog
+        show={modalVisible}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmAction}
+        title="Confirmação"
+        message="Você tem certeza que deseja realizar esta ação?"
+      />
     </S.Card>
   );
 };

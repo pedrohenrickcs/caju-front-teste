@@ -3,7 +3,7 @@ import { api } from "./api"
 export const getRegistrations = async () => {
   try {
     const response = await api.get(
-      `http://localhost:3000/registrations`,
+      `/registrations`,
     )
 
     return response.data;
@@ -15,7 +15,7 @@ export const getRegistrations = async () => {
 // export const getSearchRegistrations = async (cpf?: string) => {
 //   try {
 //     const response = await api.get(
-//       `http://localhost:3000/registrations?cpf=${cpf}`,
+//       `/registrations?cpf=${cpf}`,
 //     )
 
 //     return response.data;
