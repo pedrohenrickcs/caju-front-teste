@@ -30,7 +30,7 @@ const useRegistrationActions = (data: RegistrationData) => {
     }
   };
 
-  const handleOpenModal = (action: string) => {
+  const handleOpenModal = (action: any) => {
     setModalAction(action);
     setModalVisible(true);
   };
@@ -49,8 +49,6 @@ const useRegistrationActions = (data: RegistrationData) => {
       case 'DELETE':
         handleStatusDelete();
         break;
-      default:
-        console.warn('Ação desconhecida:', modalAction);
     }
     setModalVisible(false);
   };
