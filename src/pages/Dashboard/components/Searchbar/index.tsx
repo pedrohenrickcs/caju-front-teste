@@ -1,9 +1,9 @@
 import * as S from "./styles";
 import Button from "~/components/common/Buttons";
-import CpfMaskedTextField from "~/components/common/CpfTextField";
 import routes from "~/router/routes";
 import Loading from "../Loading";
 
+import {CpfMaskedTextField} from "~/components/common/CpfTextField";
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { IconButton } from "~/components/common/Buttons/IconButton";

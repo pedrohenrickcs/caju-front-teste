@@ -8,7 +8,7 @@ type PropsCpf = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 } & InputHTMLAttributes<any>;
 
-const CpfMaskedTextField = forwardRef<HTMLInputElement, PropsCpf>(
+export const CpfMaskedTextField = forwardRef<HTMLInputElement, PropsCpf>(
   ({ label, onChange, error, type, placeholder, ...rest }, ref) => (
     <div>
       <label>{label}</label>
@@ -17,5 +17,3 @@ const CpfMaskedTextField = forwardRef<HTMLInputElement, PropsCpf>(
     </div>
   )
 )
-
-export default CpfMaskedTextField;

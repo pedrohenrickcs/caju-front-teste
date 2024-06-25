@@ -27,7 +27,7 @@ type Props = {
   mask?: string;
 } & InputHTMLAttributes<any>;
 
-const TextField = forwardRef<HTMLInputElement, Props>(
+export const TextField = forwardRef<HTMLInputElement, Props>(
   ({ type, placeholder, label, error, ...rest }, ref) => (
     <>
       <label>{label}</label>
@@ -36,5 +36,3 @@ const TextField = forwardRef<HTMLInputElement, Props>(
     </>
   )
 )
-
-export default TextField;

@@ -2,7 +2,7 @@ import { ModalProps } from "~/types/Modal";
 import { ButtonSmall } from "../Buttons";
 import * as S from "./styles";
 
-const ModalDialog = ({ show, onClose, onConfirm, title, message }: ModalProps) => {
+export const ModalDialog = ({ show, onClose, onConfirm, title, message }: ModalProps) => {
   return (
     <S.ModalBackground show={show}>
       <S.ModalWrapper>
@@ -16,5 +16,3 @@ const ModalDialog = ({ show, onClose, onConfirm, title, message }: ModalProps) =
     </S.ModalBackground>
   );
 };
-
-export default ModalDialog;

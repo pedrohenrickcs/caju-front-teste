@@ -1,4 +1,3 @@
-import { ButtonSmall } from "~/components/common/Buttons";
 import * as S from "./styles";
 import {
   HiOutlineMail,
@@ -7,62 +6,19 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import { StatusEnum } from "~/enums/StatusEnum";
-import { api } from "~/services";
 import { ContentRegistrationsCrad } from "~/types/RegistrationCard";
-import { useState } from "react";
-import ModalDialog from "~/components/common/Modal";
+import { ButtonSmall } from "~/components/common/Buttons";
+import { ModalDialog } from "~/components/common/Modal";
+import useRegistrationActions from "~/hooks/useRegistration";
 
 const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalAction, setModalAction] = useState('');
+  const {
+    modalVisible,
+    handleOpenModal,
+    handleCloseModal,
+    handleConfirmAction
+  } = useRegistrationActions(data);
 
-
-  const handleStatusChange = async (newStatus: string) => {
-    if (data.status !== newStatus) {
-      try {
-        await api.updateRegistration(data.id, {
-          ...data,
-          status: newStatus
-        });
-        window.location.reload();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-
-  const handleStatusDelete = async () => {
-    try {
-      await api.deleteRegistration(data.id);
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleOpenModal = (action: string) => {
-    setModalAction(action);
-    setModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalVisible(false);
-  };
-
-  const handleConfirmAction = () => {
-    switch (modalAction) {
-      case StatusEnum.Reproved:
-      case StatusEnum.Approved:
-      case StatusEnum.Review:
-        handleStatusChange(modalAction);
-        break;
-      case 'DELETE':
-        handleStatusDelete();
-        break;
-    }
-    setModalVisible(false);
-  };
-  
   return (
     <S.Card>
       <S.IconAndText>
@@ -80,7 +36,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
       <S.Actions>
         {data.status === StatusEnum.Review ? (
           <>
-            <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={() => handleOpenModal('REPROVED')}>Reprovar</ButtonSmall>
+            <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={() => handleOpenModal(StatusEnum.Reproved)}>Reprovar</ButtonSmall>
             <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={() => handleOpenModal(StatusEnum.Approved)}>Aprovar</ButtonSmall>
           </>
         ) : (

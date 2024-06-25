@@ -2,9 +2,9 @@
 import * as S from "./styles";
 import routes from "~/router/routes";
 import Button from "~/components/common/Buttons";
-import TextField from "~/components/common/TextField";
-import CpfMaskedTextField from "~/components/common/CpfTextField";
 
+import { TextField } from "~/components/common/TextField";
+import { CpfMaskedTextField } from "~/components/common/CpfTextField";
 import { useHistory } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { IconButton } from "~/components/common/Buttons/IconButton";
