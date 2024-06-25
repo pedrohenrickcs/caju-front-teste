@@ -12,13 +12,7 @@ import { api } from "~/services";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { validateCPF } from "~/utils/validateCPF";
 import { validateDate } from "~/utils/validateDate";
-
-type UserFormData = {
-  employeeName: string;
-  email: string;
-  cpf: string;
-  admissionDate: string;
-};
+import { UserFormData } from "~/types/NewUser";
 
 const NewUserPage = () => {
   const history = useHistory();
@@ -46,7 +40,7 @@ const NewUserPage = () => {
         <IconButton onClick={() => goToHome()} aria-label="back">
           <HiOutlineArrowLeft size={24} />
         </IconButton>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}> 
           <TextField
             label="Nome"
             type="text"

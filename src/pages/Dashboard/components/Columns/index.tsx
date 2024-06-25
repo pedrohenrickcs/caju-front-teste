@@ -1,7 +1,9 @@
 
 import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
+
 import { ContentRegistrations } from "~/types/Registrations";
+import { RegistrationData } from "~/types/RegistrationCard";
 import { StatusEnum } from "~/enums/StatusEnum";
 
 const allColumns = [
@@ -24,7 +26,7 @@ const Collumns = ({ registrations }: ContentRegistrations) => {
               </S.TitleColumn>
               <S.CollumContent>
                 {columnRegistrations?.map((registration, i) => (
-                  <RegistrationCard data={registration} key={i} />
+                  <RegistrationCard data={registration as RegistrationData} key={i} />
                 ))}
               </S.CollumContent>
             </>

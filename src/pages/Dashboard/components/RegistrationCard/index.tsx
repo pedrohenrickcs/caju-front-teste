@@ -8,10 +8,7 @@ import {
 } from "react-icons/hi";
 import { StatusEnum } from "~/enums/StatusEnum";
 import { api } from "~/services";
-
-type ContentRegistrationsCrad = {
-  data: any
-};
+import { ContentRegistrationsCrad } from "~/types/RegistrationCard";
 
 const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
 

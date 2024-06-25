@@ -1,12 +1,13 @@
-import { HiRefresh } from "react-icons/hi";
-import { useHistory } from "react-router-dom";
-import { IconButton } from "~/components/common/Buttons/IconButton";
+import * as S from "./styles";
 import Button from "~/components/common/Buttons";
 import CpfMaskedTextField from "~/components/common/CpfTextField";
 import routes from "~/router/routes";
-import * as S from "./styles";
-import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "../Loading";
+
+import { HiRefresh } from "react-icons/hi";
+import { useHistory } from "react-router-dom";
+import { IconButton } from "~/components/common/Buttons/IconButton";
+import { ChangeEvent, useEffect, useState } from "react";
 import { api } from "~/services";
 
 export const SearchBar = () => {
