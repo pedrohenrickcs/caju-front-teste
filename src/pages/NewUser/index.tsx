@@ -29,8 +29,6 @@ const NewUserPage = () => {
   };
 
   const onSubmit: SubmitHandler<UserFormData> = async (data: any) => {
-    console.log('data: ', data);
-    
     try {
       await api.createRegistrations({
         status: "REVIEW",
