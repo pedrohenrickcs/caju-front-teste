@@ -12,8 +12,11 @@ import { ModalDialog } from "~/components/common/Modal";
 import { Notification }  from "~/components/common/Notification";
 
 import useRegistrationActions from "~/hooks/useRegistration";
+import { formatDate } from "~/utils/validateDate";
 
 const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
+  const formateDate = formatDate(data.admissionDate)
+  
   const {
     notification,
     modalVisible,
@@ -35,7 +38,7 @@ const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
         </S.IconAndText>
         <S.IconAndText>
           <HiOutlineCalendar />
-          <span>{data.admissionDate}</span>
+          <span>{formateDate}</span>
         </S.IconAndText>
         <S.Actions>
           {data.status === StatusEnum.Review ? (

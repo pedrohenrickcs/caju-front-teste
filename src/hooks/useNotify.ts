@@ -4,12 +4,10 @@ const useNotify = () => {
   const [notification, setNotification] = useState({ message: '' });
 
   const notifySuccess = (message: string) => {
-    if (message) {
       setNotification({ message });
       setTimeout(() => {
         setNotification({ message: '' });
       }, 3000);
-    }
   };
 
   return {
