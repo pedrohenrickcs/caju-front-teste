@@ -8,13 +8,17 @@ const useRegistrationActions = (data: RegistrationData) => {
   const [modalAction, setModalAction] = useState('');
 
   const handleStatusChange = async (newStatus: StatusEnum) => {
+    
     if (data.status !== newStatus) {
       try {
         await api.updateRegistration(data.id, {
           ...data,
           status: newStatus
         });
+
+        localStorage.setItem('notifyMessage', `Status alterado para ${newStatus}`);
         window.location.reload();
+        
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +28,10 @@ const useRegistrationActions = (data: RegistrationData) => {
   const handleStatusDelete = async () => {
     try {
       await api.deleteRegistration(data.id);
+
+      localStorage.setItem('notifyMessage', 'Registro excluído com sucesso');
       window.location.reload();
+
     } catch (error) {
       console.error(error);
     }
