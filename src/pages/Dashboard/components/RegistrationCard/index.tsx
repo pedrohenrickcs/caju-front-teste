@@ -9,7 +9,7 @@ import { StatusEnum } from "~/enums/StatusEnum";
 import { ContentRegistrationsCrad } from "~/types/RegistrationCard";
 import { ButtonSmall } from "~/components/common/Buttons";
 import { ModalDialog } from "~/components/common/Modal";
-import { Notification } from "~/components/common/Notification";
+import { Notification }  from "~/components/common/Notification";
 
 import useRegistrationActions from "~/hooks/useRegistration";
 import useNotify from "~/hooks/useNotify";
@@ -67,7 +67,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
           message="Você tem certeza que deseja realizar esta ação?"
         />
       </S.Card>
-      <Notification message={notification.message} type={notification.type} />
+      <Notification message={notification.message} />
     </>
   );
 };

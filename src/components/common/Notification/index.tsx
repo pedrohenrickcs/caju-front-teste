@@ -1,8 +1,12 @@
 import * as S from "./styles";
 
-export const Notification = ({ message, type }: any) => {
+interface NotificationProps {
+  message: string;
+}
+
+export const Notification = ({ message }: NotificationProps) => {
   return (
-    <S.NotificationContainer type={type} show={!!message}>
+    <S.NotificationContainer show={!!message}>
       {message}
     </S.NotificationContainer>
   );

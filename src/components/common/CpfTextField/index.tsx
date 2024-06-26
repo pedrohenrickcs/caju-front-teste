@@ -5,6 +5,7 @@ type PropsCpf = {
   label?: string;
   error?: string;
   mask?: string;
+  ref?: any;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 } & InputHTMLAttributes<any>;
 
