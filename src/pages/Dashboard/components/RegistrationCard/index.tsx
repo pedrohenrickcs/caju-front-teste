@@ -12,25 +12,15 @@ import { ModalDialog } from "~/components/common/Modal";
 import { Notification }  from "~/components/common/Notification";
 
 import useRegistrationActions from "~/hooks/useRegistration";
-import useNotify from "~/hooks/useNotify";
-import { useEffect } from "react";
 
-const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
-  const { notification, notifySuccess } = useNotify();
+const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
   const {
+    notification,
     modalVisible,
     handleOpenModal,
     handleCloseModal,
     handleConfirmAction
-  } = useRegistrationActions(data);
-
-  useEffect(() => {
-    const message = localStorage.getItem('notifyMessage');
-    if (message) {
-      notifySuccess(message);
-      localStorage.removeItem('notifyMessage');
-    }
-  }, [notifySuccess]);
+  } = useRegistrationActions(data, updateData);
 
   return (
     <>
@@ -67,7 +57,7 @@ const RegistrationCard = ({ data }: ContentRegistrationsCrad) => {
           message="Você tem certeza que deseja realizar esta ação?"
         />
       </S.Card>
-      <Notification message={notification.message} />
+      {notification.message && <Notification message={notification.message} />}
     </>
   );
 };

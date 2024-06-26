@@ -5,7 +5,7 @@ interface NotificationProps {
 }
 
 export const Notification = ({ message }: NotificationProps) => {
-  return (
+  return message && (
     <S.NotificationContainer show={!!message}>
       {message}
     </S.NotificationContainer>

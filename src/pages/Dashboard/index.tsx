@@ -4,6 +4,7 @@ import { SearchBar } from "./components/Searchbar";
 import { useEffect, useState } from "react";
 import Loading from "./components/Loading";
 import { api } from "~/services";
+import { refetchRegistrations } from "~/services/refetchRegistrations";
 
 const DashboardPage = () => {
   const [registrations, setRegistrations] = useState([])
@@ -21,14 +22,18 @@ const DashboardPage = () => {
         }
       }
       getData()
-  }, [])
+  }, [registrations])
+
+  const updateData = async () => {
+    await refetchRegistrations();
+  };
 
   if (isLoading) return <Loading />
 
   return (
     <S.Container>
       <SearchBar />
-      <Collumns registrations={registrations} />
+      <Collumns registrations={registrations} updateData={updateData} />
     </S.Container>
   );
 };

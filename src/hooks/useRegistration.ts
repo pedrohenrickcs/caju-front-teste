@@ -2,13 +2,14 @@ import { useState } from "react";
 import { StatusEnum } from "~/enums/StatusEnum";
 import { api } from "~/services";
 import { RegistrationData } from "~/types/RegistrationCard";
+import useNotify from "./useNotify";
 
-const useRegistrationActions = (data: RegistrationData) => {
+const useRegistrationActions = (data: RegistrationData, updateData: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalAction, setModalAction] = useState('');
+  const { notification, notifySuccess } = useNotify();
 
   const handleStatusChange = async (newStatus: StatusEnum) => {
-    
     if (data.status !== newStatus) {
       try {
         await api.updateRegistration(data.id, {
@@ -16,8 +17,8 @@ const useRegistrationActions = (data: RegistrationData) => {
           status: newStatus
         });
 
-        localStorage.setItem('notifyMessage', `Status alterado para ${newStatus}`);
-        window.location.reload();
+        notifySuccess(`Status alterado para ${newStatus}`);
+        updateData();
         
       } catch (error) {
         console.error(error);
@@ -28,9 +29,8 @@ const useRegistrationActions = (data: RegistrationData) => {
   const handleStatusDelete = async () => {
     try {
       await api.deleteRegistration(data.id);
-
-      localStorage.setItem('notifyMessage', 'Registro excluído com sucesso');
-      window.location.reload();
+      notifySuccess('Registro excluído com sucesso');
+      updateData();
 
     } catch (error) {
       console.error(error);
@@ -61,6 +61,7 @@ const useRegistrationActions = (data: RegistrationData) => {
   };
 
   return {
+    notification,
     modalVisible,
     handleOpenModal,
     handleCloseModal,

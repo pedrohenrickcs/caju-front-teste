@@ -12,7 +12,7 @@ const allColumns = [
   { status: StatusEnum.Reproved, title: "Reprovado" },
 ];
 
-const Collumns = ({ registrations }: ContentRegistrations) => {
+const Collumns = ({ registrations, updateData }: ContentRegistrations) => {
   return (
     <S.Container>
       {allColumns.map((collum) => {
@@ -26,7 +26,7 @@ const Collumns = ({ registrations }: ContentRegistrations) => {
               </S.TitleColumn>
               <S.CollumContent>
                 {columnRegistrations?.map((registration, i) => (
-                  <RegistrationCard data={registration as RegistrationData} key={i} />
+                  <RegistrationCard data={registration as RegistrationData} key={i} updateData={updateData} />
                 ))}
               </S.CollumContent>
             </>

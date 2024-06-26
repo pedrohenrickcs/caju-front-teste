@@ -5,4 +5,5 @@ export type Registration = {
 
 export type ContentRegistrations = {
   registrations?: Registration[];
+  updateData?: any;
 };

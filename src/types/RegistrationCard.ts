@@ -10,4 +10,5 @@ export type RegistrationData = {
 
 export type ContentRegistrationsCrad = {
   data: RegistrationData
+  updateData?: () => void;
 };
