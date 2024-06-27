@@ -21,8 +21,33 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 24px;
-  justify-content: center;
   margin-top: 24px;
+
+  @media screen and (max-width: 800px) {
+    overflow-x: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      258deg,
+      rgba(255, 117, 0, 1) 8%,
+      rgba(232, 5, 55, 1) 53%
+    );
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 `;
 
 export const Column = styled.div<{ status: StatusEnum }>`
@@ -32,6 +57,10 @@ export const Column = styled.div<{ status: StatusEnum }>`
   border-radius: 32px;
   min-height: 80vh;
   max-height: 80vh;
+
+  @media screen and (max-width: 800px) {
+    min-width: 300px;
+  }
 `;
 
 export const TitleColumn = styled.h3<{ status: StatusEnum }>`
