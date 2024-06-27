@@ -4,7 +4,7 @@
       "admissionDate": "2023-10-22",
       "email": "luiz@caju.com.br",
       "employeeName": "Luiz Filho",
-      "status": "APROVED",
+      "status": "REVIEW",
       "cpf": "56642105087",
       "id": "3"
     },
@@ -17,16 +17,8 @@
       "cpf": "78502270001"
     },
     {
-      "id": "8301",
-      "status": "REVIEW",
-      "employeeName": "Pedro teste",
-      "email": "pedro.henrickcs@gmail.com",
-      "cpf": "228.504.028-85",
-      "admissionDate": "1993-08-21"
-    },
-    {
       "id": "292d",
-      "status": "REVIEW",
+      "status": "APROVED",
       "employeeName": "Pedro teste",
       "email": "pedro.henrickcs@gmail.com",
       "cpf": "228.504.028-85",

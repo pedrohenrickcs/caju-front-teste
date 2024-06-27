@@ -7,29 +7,26 @@ import { CpfMaskedTextField } from '~/components/common/CpfTextField';
 import { HiRefresh } from 'react-icons/hi';
 import { IconButton } from '~/components/common/Buttons/IconButton';
 import { useHistory } from 'react-router-dom';
-import { useRefetchRegistrations } from '~/hooks/useRefetchRegistrations';
+import { useState, useEffect } from 'react';
+import { useDebounce } from '~/hooks/useDebounce';
 
-export const SearchBar = () => {
+export const SearchBar = ({ updateData, isLoading, onSearch }: any) => {
   const history = useHistory();
-  const { isLoading, refetchRegistration } = useRefetchRegistrations();
-  // const [cpf, setCpf] = useState('');
+  const [cpf, setCpf] = useState('');
+  const debouncedCpf = useDebounce(cpf, 500);
 
-  // useDebounceEffect(() => {
-  //   if (cpf) {
-  //     // Aqui você pode chamar a função de busca na API
-  //     // api.getSearchRegistrations();
-  //   }
-  // }, 500, [cpf]);
+  useEffect(() => {
+    if (debouncedCpf) {
+      onSearch(debouncedCpf);
+    }
+  }, [debouncedCpf, onSearch]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCpf(event.target.value);
+  };
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
-  };
-
-  const handleInputChange = async () => {
-    // const cpf = event.target.value;
-    // setCpf(cpf);
-    console.log('change');
-    
   };
 
   if (isLoading) return <Loading />;
@@ -38,7 +35,7 @@ export const SearchBar = () => {
     <S.Container>
       <CpfMaskedTextField placeholder="Digite um CPF válido" onChange={handleInputChange} />
       <S.Actions>
-        <IconButton aria-label="refetch" onClick={refetchRegistration}>
+        <IconButton aria-label="refetch" onClick={updateData}>
           <HiRefresh />
         </IconButton>
         <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
