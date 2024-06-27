@@ -28,7 +28,7 @@ export const Container = styled.div`
   }
 
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
@@ -46,7 +46,11 @@ export const Container = styled.div`
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+     background: linear-gradient(
+      258deg,
+      rgba(255, 117, 0, 1) 80%,
+      rgba(232, 5, 55, 1) 53%
+    );
   }
 `;
 
