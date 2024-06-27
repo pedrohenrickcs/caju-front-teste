@@ -1,5 +1,5 @@
 export type ModalProps = {
-  show: boolean;
+  show: any;
   onClose: () => void;
   onConfirm: () => void;
   title: string;

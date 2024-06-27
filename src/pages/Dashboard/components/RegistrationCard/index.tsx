@@ -23,7 +23,7 @@ const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
     handleOpenModal,
     handleCloseModal,
     handleConfirmAction
-  } = useRegistrationActions(data, updateData);
+  } = useRegistrationActions(data, updateData);  
 
   return (
     <>
@@ -53,7 +53,7 @@ const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
         </S.Actions>
 
         <ModalDialog
-          show={modalVisible}
+          show={modalVisible ? modalVisible : undefined}
           onClose={handleCloseModal}
           onConfirm={handleConfirmAction}
           title="Confirmação"
