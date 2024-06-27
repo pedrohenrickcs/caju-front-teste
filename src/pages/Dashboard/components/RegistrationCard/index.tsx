@@ -10,9 +10,9 @@ import { ContentRegistrationsCrad } from "~/types/RegistrationCard";
 import { ButtonSmall } from "~/components/common/Buttons";
 import { ModalDialog } from "~/components/common/Modal";
 import { Notification }  from "~/components/common/Notification";
+import { formatDate } from "~/utils/validateDate";
 
 import useRegistrationActions from "~/hooks/useRegistration";
-import { formatDate } from "~/utils/validateDate";
 
 const RegistrationCard = ({ data, updateData }: ContentRegistrationsCrad) => {
   const formateDate = formatDate(data.admissionDate)

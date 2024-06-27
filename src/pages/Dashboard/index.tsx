@@ -1,54 +1,28 @@
-import Collumns from "./components/Columns";
-import * as S from "./styles";
-import { SearchBar } from "./components/Searchbar";
-import { useCallback, useEffect, useState } from "react";
-import Loading from "./components/Loading";
-import { api } from "~/services";
-import { RegistrationData } from "~/types/RegistrationCard";
+import * as S from './styles';
+import Collumns from './components/Columns';
+import Loading from './components/Loading';
+import useRegistrationActions from '~/hooks/useRegistration';
+import { SearchBar } from './components/Searchbar';
+import { useEffect, useState } from 'react';
+import { useSearch } from '~/hooks/useSearch';
 
 const DashboardPage = () => {
-  const [registrations, setRegistrations] = useState([])
-  const [filteredRegistrations, setFilteredRegistrations] = useState<RegistrationData[]>([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const { registrations, isLoading, updateRegistrations } = useRegistrationActions();
+  const [filteredRegistrations, setFilteredRegistrations] = useState(registrations);
+  const { handleSearch } = useSearch(registrations, setFilteredRegistrations);
 
   useEffect(() => {
     setFilteredRegistrations(registrations);
   }, [registrations]);
 
-  const getData = useCallback( async () => {
-    try {
-      const response = await api.getRegistrations()
-      setRegistrations(response)
-      setIsLoading(false)
-    } catch (error) {
-      console.error(error)
-      setIsLoading(false)
-    }
-  }, []);
-
-  const handleSearch = useCallback(async (cpf: string) => {
-    if (cpf) {
-      const filtered = registrations.filter((reg: any) =>
-        reg.cpf.replace(/\D/g, '').includes(cpf.replace(/\D/g, ''))
-      );
-      setFilteredRegistrations(filtered);
-    } else {
-      setFilteredRegistrations(registrations);
-    }
-  }, [registrations])
-
-  useEffect(() => {
-    getData()
-  }, [getData])
-
-
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading />;
 
   return (
     <S.Container>
       <SearchBar onSearch={handleSearch} />
-      <Collumns updateData={getData} filteredRegistrations={filteredRegistrations} />
+      <Collumns updateData={updateRegistrations} filteredRegistrations={filteredRegistrations} />
     </S.Container>
   );
 };
+
 export default DashboardPage;
