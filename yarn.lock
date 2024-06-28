@@ -803,13 +803,13 @@
     lodash "^4.17.21"
     redent "^3.0.0"
 
-"@testing-library/react@13.0.0":
-  version "13.0.0"
-  resolved "https://registry.npmjs.org/@testing-library/react/-/react-13.0.0.tgz"
+"@testing-library/react@^13.0.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.4.0.tgz#6a31e3bf5951615593ad984e96b9e5e2d9380966"
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.5.0"
-    "@types/react-dom" "*"
+    "@types/react-dom" "^18.0.0"
 
 "@tinyhttp/accepts@2.2.1":
   version "2.2.1"
@@ -1044,15 +1044,15 @@
   version "15.7.12"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.12.tgz"
 
-"@types/react-dom@*", "@types/react-dom@^18.2.22":
+"@types/react-dom@^18.0.0", "@types/react-dom@^18.2.22":
   version "18.3.0"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
   dependencies:
     "@types/react" "*"
 
 "@types/react-input-mask@^3.0.5":
   version "3.0.5"
-  resolved "https://registry.npmjs.org/@types/react-input-mask/-/react-input-mask-3.0.5.tgz"
+  resolved "https://registry.yarnpkg.com/@types/react-input-mask/-/react-input-mask-3.0.5.tgz#9fbe9a984b3299419a6071dbf697ac2cae2abd2d"
   dependencies:
     "@types/react" "*"
 
@@ -3829,6 +3829,10 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
+
+react-hook-form@^7.52.0:
+  version "7.52.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.52.0.tgz#e52b33043e283719586b9dd80f6d51b68dd3999c"
 
 react-icons@^5.2.1:
   version "5.2.1"
