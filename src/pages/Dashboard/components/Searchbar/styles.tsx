@@ -5,6 +5,10 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const Actions = styled.div`
